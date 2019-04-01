@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.5)
 project(thor VERSION 1.3.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 11)
 
