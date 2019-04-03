@@ -8,6 +8,9 @@
 
 
 ```
+# install some dependencies
+sudo apt install libcurl4-openssl-dev
+# make sure curl avaliable
 git clone https://github.com/jinfagang/thor
 cd thor
 mkdir build

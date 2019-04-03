@@ -3,3 +3,4 @@ build/
 Thor.*
 cmake-build-debug/
 .vscode/
+build/
