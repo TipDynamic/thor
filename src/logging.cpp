@@ -17,7 +17,7 @@ void thor::Log(LEVEL level, const string content){
 
     switch (level){
         case LEVEL::kInfo:
-            cout << colors::bold << colors::yellow << "INFO: " << colors::reset << t + " " + content << endl;
+            cout << colors::bold << colors::white << "INFO: " << colors::reset << t + " " + content << endl;
             //cout << colors::bold << colors::yellow << "INFO: " << colors::reset << t + " [" + __FILE__ + " " + to_string(__LINE__) + "]" + content << endl;
             break;
         case LEVEL::kWarning:
@@ -32,7 +32,7 @@ void thor::Log(LEVEL level, int content){
     string t = thor::getSysTime();
     switch (level){
         case LEVEL::kInfo:
-            cout << colors::bold << colors::yellow << "INFO: " << colors::reset << t + " " + to_string(content) << endl;
+            cout << colors::bold << colors::white << "INFO: " << colors::reset << t + " " + to_string(content) << endl;
             break;
         case LEVEL::kWarning:
             cout << colors::bold << "WARN: " << colors::reset << t + " " + to_string(content) << endl;

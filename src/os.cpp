@@ -72,7 +72,7 @@ vector<string> thor::os::list_files(string path, bool full_path) {
 
     vector<string> files;
     if ((dp = opendir(&path[0u])) == nullptr) {
-        cout << "dir not exist." << endl;
+        thor::Log(kError, "dir not exist....");
     }
     while ((dirP = readdir(dp)) != nullptr) {
         // in xfs file system, d_type always be NULL
@@ -101,6 +101,18 @@ vector<string> thor::os::list_files(string path, bool full_path) {
 
     closedir(dp);
     return files;
+}
+
+vector<string> thor::os::list_files_recurse(string path, bool full_path){
+    // return all files recursive
+    vector<string> all_files = list_files(path, full_path);
+    vector<string> all_dirs = list_dirs(path, full_path);
+    for(auto d: all_dirs)
+    {
+        vector<string> n_res = list_files_recurse(d, full_path);
+        all_files.insert(all_files.end(), n_res.begin(), n_res.end());
+    }
+    return all_files;
 }
 
 vector<string> thor::os::list_dirs(string path, bool full_path) {
