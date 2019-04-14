@@ -21,11 +21,11 @@
 #include <iostream>
 #include "curl/curl.h"
 #include "glog/logging.h"
-#include "json.hpp"
+#include "json.h"
 
 using namespace google;
 using namespace std;
-using json = nlohmann::json;
+using json = thor::json;
 
 namespace thor{
     namespace security{

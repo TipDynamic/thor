@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+.././include/math.h
+vector
+.././include/vector
+assert.h
+.././include/assert.h
+cmath
+-
+glog/logging.h
+.././include/glog/logging.h
+
+/media/jintian/netac/weapons/cc/thor/src/math.cpp
+include/math.h
+/media/jintian/netac/weapons/cc/thor/src/include/math.h
+

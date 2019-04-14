@@ -4,7 +4,3 @@
 
 #include "include/math.h"
 
-
-int thor::math::add(int a, int b) {
-    return a*b;
-}
