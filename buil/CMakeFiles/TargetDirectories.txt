@@ -1,8 +1,0 @@
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/install/strip.dir
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/install/local.dir
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/thor_static.dir
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/install.dir
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/list_install_components.dir
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/thor.dir
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/edit_cache.dir
-/media/jintian/netac/weapons/cc/thor/buil/CMakeFiles/rebuild_cache.dir

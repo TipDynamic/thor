@@ -1,2 +1,0 @@
-/usr/bin/ar qc libthor_static.a  CMakeFiles/thor_static.dir/src/app_license.cc.o CMakeFiles/thor_static.dir/src/dl.cpp.o CMakeFiles/thor_static.dir/src/logging.cpp.o CMakeFiles/thor_static.dir/src/math.cpp.o CMakeFiles/thor_static.dir/src/os.cpp.o CMakeFiles/thor_static.dir/src/random.cpp.o CMakeFiles/thor_static.dir/src/slam.cpp.o CMakeFiles/thor_static.dir/src/str_util.cpp.o CMakeFiles/thor_static.dir/src/vis.cpp.o
-/usr/bin/ranlib libthor_static.a
