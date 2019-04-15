@@ -28,7 +28,7 @@ namespace thor{
             T sum = 0.;
             for(size_t i = 0; i < v_a.size(); i++)
             {
-                sum += square(v_a[i] - v_b[i]);
+                sum += pow(v_a[i] - v_b[i], 2);
             }
             sum = sqrt(sum);
             return sum;
