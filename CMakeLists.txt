@@ -12,6 +12,9 @@ file(GLOB_RECURSE thor_SRCS "src/*.cpp" "src/*.cc")
 file(GLOB_RECURSE thor_HEADERS "include/*.h" "include/*.hpp")
 
 include(GNUInstallDirs)
+# !------------ include freetype2
+include_directories(/usr/include/freetype2/)
+    
 
 if (USE_OPENCV)
     find_package(OpenCV REQUIRED)
@@ -27,14 +30,14 @@ endif()
 # https://stackoverflow.com/questions/10487256/cmake-how-to-properly-copy-static-librarys-header-file-into-usr-include
 if (USE_OPENCV)
     add_library(thor SHARED ${thor_SRCS})
-    target_link_libraries(thor ${OpenCV_LIBS} ${CURL_LIBRARIES} glog)
+    target_link_libraries(thor ${OpenCV_LIBS} ${CURL_LIBRARIES} glog freetype)
 
     add_library(thor_static STATIC ${thor_SRCS})
-    target_link_libraries(thor_static ${OpenCV_LIBS} ${CURL_LIBRARIES} glog)
+    target_link_libraries(thor_static ${OpenCV_LIBS} ${CURL_LIBRARIES} glog freetype)
 
 else ()
-    add_library(thor SHARED ${thor_SRCS} ${CURL_LIBS} glog)
-    add_library(thor_static STATIC ${thor_SRCS} ${CURL_LIBS} glog)
+    add_library(thor SHARED ${thor_SRCS} ${CURL_LIBS} glog freetype)
+    add_library(thor_static STATIC ${thor_SRCS} ${CURL_LIBS} glog freetype)
 endif ()
 
 
