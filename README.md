@@ -6,6 +6,19 @@
 
 ## Installation
 
+*thor* is now expanded into a deep learning util library, so there are som prerequirements is needed:
+
+```
+# for computer vision
+opencv
+# for show Chinese fonts
+libfreetype6-dev
+
+PCL (optinal)
+Eigen (optional)
+```
+In case you are not formiliar with any above libs, you can still buid thor, but you need them when calling some apis.
+
 
 ```
 git clone https://github.com/jinfagang/thor
@@ -28,7 +41,7 @@ so you can have **Thor** library in your system. Or, simply:
 *updates*:
 
 - **2050.01.01**: to be continue..
-
+- **2019.04.17**: We add a simple Chinese font support now.
 - **2019.01.15**: Now, slam module has been integrated into thor, you can access slam by those functions:
 
   ```
