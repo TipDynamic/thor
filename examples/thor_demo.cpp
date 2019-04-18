@@ -16,7 +16,7 @@
 #include "opencv2/opencv.hpp"
 #include "./include/dog.h"
 #include "thor/app_license.h"
-#include "thor/vis.h"
+#include "thor/cv_ex.h"
 
 using namespace std;
 using namespace thor;
@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
     return -1;
   }
 
-  thor::vis::CvxText cvText("../FZSSJW.TTF"); //指定字体
+  thor::CvxText cvText("../FZSSJW.TTF"); //指定字体
   cv::Scalar size1{38, 0.5, 0.1, 0}; // (字体大小, 无效的, 字符间距, 无效的 }
   cvText.setFont(nullptr, &size1, nullptr, 0);
   char* str = (char *)"你好，世界!";
