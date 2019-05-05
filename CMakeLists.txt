@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 # -------- Add definitions
 option(USE_OPENCV "Build with OpenCV enable for vis module" ON)
+option(USE_EIGEN "Build with Eigen enable for geometry module" ON)
 option(DEBUG "Enable debug mode, for develop" ON)
 
 
@@ -34,9 +35,8 @@ if (USE_OPENCV)
 
     add_library(thor_static STATIC ${thor_SRCS})
     target_link_libraries(thor_static ${OpenCV_LIBS} ${CURL_LIBRARIES} glog freetype)
-
 else ()
-    add_library(thor SHARED ${thor_SRCS} ${CURL_LIBS} glog freetype include/algorithm.h src/algorithm.cpp src/cv_ex.cpp include/cv_ex.h)
+    add_library(thor SHARED ${thor_SRCS} ${CURL_LIBS} glog freetype include/algorithm.h src/algorithm.cpp src/cv_ex.cpp include/cv_ex.h include/geometry.h src/geometry.cpp)
     add_library(thor_static STATIC ${thor_SRCS} ${CURL_LIBS} glog freetype)
 endif ()
 

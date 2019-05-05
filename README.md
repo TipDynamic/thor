@@ -4,20 +4,18 @@
 
 
 
-## Installation
+## Install
 
 *thor* is now expanded into a deep learning util library, so there are som prerequirements is needed:
 
 ```
-# for computer vision
-opencv
-# for show Chinese fonts
-libfreetype6-dev
+sudo apt install libopencv-dev
+sudo apt install libfreetype6-dev
 
 PCL (optinal)
 Eigen (optional)
 ```
-In case you are not formiliar with any above libs, you can still buid thor, but you need them when calling some apis.
+In case you are not formiliar with any above libs, you can still build thor, but you need them when calling some apis.
 
 
 ```
@@ -30,31 +28,26 @@ make all -j8
 sudo make install
 ```
 
-so you can have **Thor** library in your system. Or, simply:
-
-```shell
-./build_all.sh
-```
+We will automatically locate your system installed Eigen, once found, you can using all interfaces with Eigen. If you not install Eigen, just will ignore it.
 
 
 
 *updates*:
 
 - **2050.01.01**: to be continue..
-- **2019.04.17**: We add a simple Chinese font support now.
-- **2019.01.15**: Now, slam module has been integrated into thor, you can access slam by those functions:
-
-  ```
-  // to get good matches of 2 images
-  slam::getGoodMatchesColor(img1, img2, good_matches);
-  ```
-
+- **2019.05.01**: Add some geometry utils such as conversion between quaternion and euler angels for robots and autocar:
+    ```c++
+    Eigen::Matrix3d Quaternion2RotationMatrix(const double x, const double y, const double z, const double w);
+    Eigen::Quaterniond EulerAngle2Quaternion(const double yaw, const double pitch, const double roll);                             
+    ```
+    **note**: this is only available when you have Eigen installed.
+- **2019.01.15**: Now, slam module has been integrated into thor, you can access slam by those functions;
 
 
 
 ## Usage
 
-**Thor** has a very clean and easy-to-use API, it consist of many parts. All parts can be listed as follow:
+**thor** has a very clean and easy-to-use API, it consist of many parts. All parts can be listed as follow:
 
 - *vis*: For computer vision, draw boxes or segmentation results on image, should worked with opencv;
 - *files*;
@@ -63,51 +56,19 @@ so you can have **Thor** library in your system. Or, simply:
 - *logging*;
 - *slam*;
 
-
-
-**dependencies** of thor:
-
-thor only relies on some normal library such as opencv (for compute vision purpose), you can install opencv by build from source, but install another module:
-
-```
-sudo add-apt-repository --yes ppa:xqms/opencv-nonfree
-sudo apt-get update
-sudo apt-get install libopencv-nonfree-dev
-```
-
-if you are not using *slam* module, then just ignore this.
-
-Find **thor**:
+You only need add this line to CMakeLists.txt when you have thor installed in your system path.
 
 ```cmake
-find_library(thor_LIBRARY
-        NAME thor
-        HINTS "${CMAKE_INSTALL_PREFIX}/lib"
-        )
-if (NOT thor_FOUND)
-    message(ERROR "Thor lib not found, you can clone from https://github.com/jinfagang/Thor to build and install.")
-endif ()
-
-# then link it
-target_link_libraries(main ${thor_LIBRARY})
-
-# if you install thor to system path, simply using is also OK
 target_link_libraries(main -lthor)
 ```
-
-
 
 to build with Makefile, using:
 
 ```shell
 g++ -o a a.cpp `pkg-config thor --cflags --libs`
 ```
-
-add above output to your makefile and you can build with thor
-
-
-
 In case you want integrate but with trouble, find me via wechat: `jintianiloveu`
+
 
 ## Features
 We list module **thor** currently finished here:
@@ -117,8 +78,7 @@ We list module **thor** currently finished here:
 - [x] random
 - [x] log
 - [x] string utils
-
-
+- [x] geometry (quaternion and euler angle conversion)
 
 
 ## Copyright
