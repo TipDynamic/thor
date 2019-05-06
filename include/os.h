@@ -12,6 +12,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <cassert>
+#include "logging.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ namespace thor{
         bool isfile(string path);
 
         vector<string> list_files(string path, bool full_path);
+        vector<string> list_files_recurse(string path, bool full_path);
         vector<string> list_dirs(string path, bool full_path);
         vector<string> list_all(string path, bool full_path);
 

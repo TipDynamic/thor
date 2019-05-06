@@ -5,11 +5,6 @@
 #include "include/math.h"
 
 
-int thor::math::add(int a, int b) {
-    return a*b;
-}
-
-
 /**
  * n indicates how many terms in curve, more n, more accurate
  * @param key_point
@@ -41,3 +36,4 @@ bool thor::math::polynomial_curve_fit(std::vector<cv::Point> &key_point, int n, 
     cv::solve(X, Y, A, cv::DECOMP_LU);
     return true;
 }
+

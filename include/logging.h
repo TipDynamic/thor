@@ -10,25 +10,23 @@
 #include <vector>
 #include <map>
 #include <ctime>
-
-
 #include "colors.h"
 
 using namespace std;
 
-enum LEVEL{
+enum LEVEL
+{
     kInfo,
     kWarning,
     kError,
 };
 
+namespace thor
+{
+void Log(LEVEL level, const string content);
+void Log(LEVEL level, int content);
 
-namespace thor {
-    void Log(LEVEL level, const string content);
-    void Log(LEVEL level, int content);
-
-    string getSysTime();
-}
-
+string getSysTime();
+} // namespace thor
 
 #endif //_T_LOG_H

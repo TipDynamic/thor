@@ -1,38 +1,9 @@
-/*
-    __ _____ _____ _____
- __|  |   __|     |   | |  JSON for Modern C++
-|  |  |__   |  |  | | | |  version 3.5.0
-|_____|_____|_____|_|___|  https://github.com/nlohmann/json
+#ifndef thor_JSON_HPP
+#define thor_JSON_HPP
 
-Licensed under the MIT License <http://opensource.org/licenses/MIT>.
-SPDX-License-Identifier: MIT
-Copyright (c) 2013-2018 Niels Lohmann <http://nlohmann.me>.
-
-Permission is hereby  granted, free of charge, to any  person obtaining a copy
-of this software and associated  documentation files (the "Software"), to deal
-in the Software  without restriction, including without  limitation the rights
-to  use, copy,  modify, merge,  publish, distribute,  sublicense, and/or  sell
-copies  of  the Software,  and  to  permit persons  to  whom  the Software  is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE  IS PROVIDED "AS  IS", WITHOUT WARRANTY  OF ANY KIND,  EXPRESS OR
-IMPLIED,  INCLUDING BUT  NOT  LIMITED TO  THE  WARRANTIES OF  MERCHANTABILITY,
-FITNESS FOR  A PARTICULAR PURPOSE AND  NONINFRINGEMENT. IN NO EVENT  SHALL THE
-AUTHORS  OR COPYRIGHT  HOLDERS  BE  LIABLE FOR  ANY  CLAIM,  DAMAGES OR  OTHER
-LIABILITY, WHETHER IN AN ACTION OF  CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-
-#ifndef NLOHMANN_JSON_HPP
-#define NLOHMANN_JSON_HPP
-
-#define NLOHMANN_JSON_VERSION_MAJOR 3
-#define NLOHMANN_JSON_VERSION_MINOR 5
-#define NLOHMANN_JSON_VERSION_PATCH 0
+#define thor_JSON_VERSION_MAJOR 3
+#define thor_JSON_VERSION_MINOR 5
+#define thor_JSON_VERSION_PATCH 0
 
 #include <algorithm> // all_of, find, for_each
 #include <cassert> // assert
@@ -46,9 +17,9 @@ SOFTWARE.
 #include <string> // string, stoi, to_string
 #include <utility> // declval, forward, move, pair, swap
 
-// #include <nlohmann/json_fwd.hpp>
-#ifndef NLOHMANN_JSON_FWD_HPP
-#define NLOHMANN_JSON_FWD_HPP
+// #include <thor/json_fwd.hpp>
+#ifndef thor_JSON_FWD_HPP
+#define thor_JSON_FWD_HPP
 
 #include <cstdint> // int64_t, uint64_t
 #include <map> // map
@@ -56,12 +27,8 @@ SOFTWARE.
 #include <string> // string
 #include <vector> // vector
 
-/*!
-@brief namespace for Niels Lohmann
-@see https://github.com/nlohmann
-@since version 1.0.0
-*/
-namespace nlohmann
+
+namespace thor
 {
 /*!
 @brief default JSONSerializer template argument
@@ -108,11 +75,11 @@ uses the standard template types.
 @since version 1.0.0
 */
 using json = basic_json<>;
-}  // namespace nlohmann
+}  // namespace thor
 
 #endif
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
 
 // This file contains all internal macro definitions
@@ -122,11 +89,11 @@ using json = basic_json<>;
 #if !defined(JSON_SKIP_UNSUPPORTED_COMPILER_CHECK)
     #if defined(__clang__)
         #if (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__) < 30400
-            #error "unsupported Clang version - see https://github.com/nlohmann/json#supported-compilers"
+            #error "unsupported Clang version - see https://github.com/thor/json#supported-compilers"
         #endif
     #elif defined(__GNUC__) && !(defined(__ICC) || defined(__INTEL_COMPILER))
         #if (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__) < 40800
-            #error "unsupported GCC version - see https://github.com/nlohmann/json#supported-compilers"
+            #error "unsupported GCC version - see https://github.com/thor/json#supported-compilers"
         #endif
     #endif
 #endif
@@ -204,10 +171,10 @@ using json = basic_json<>;
 
 /*!
 @brief macro to briefly define a mapping between an enum and JSON
-@def NLOHMANN_JSON_SERIALIZE_ENUM
+@def thor_JSON_SERIALIZE_ENUM
 @since version 3.4.0
 */
-#define NLOHMANN_JSON_SERIALIZE_ENUM(ENUM_TYPE, ...)                                           \
+#define thor_JSON_SERIALIZE_ENUM(ENUM_TYPE, ...)                                           \
     template<typename BasicJsonType>                                                           \
     inline void to_json(BasicJsonType& j, const ENUM_TYPE& e)                                  \
     {                                                                                          \
@@ -236,7 +203,7 @@ using json = basic_json<>;
 // Ugly macros to avoid uglier copy-paste when specializing basic_json. They
 // may be removed in the future once the class is split.
 
-#define NLOHMANN_BASIC_JSON_TPL_DECLARATION                                \
+#define thor_BASIC_JSON_TPL_DECLARATION                                \
     template<template<typename, typename, typename...> class ObjectType,   \
              template<typename, typename...> class ArrayType,              \
              class StringType, class BooleanType, class NumberIntegerType, \
@@ -244,19 +211,19 @@ using json = basic_json<>;
              template<typename> class AllocatorType,                       \
              template<typename, typename = void> class JSONSerializer>
 
-#define NLOHMANN_BASIC_JSON_TPL                                            \
+#define thor_BASIC_JSON_TPL                                            \
     basic_json<ObjectType, ArrayType, StringType, BooleanType,             \
     NumberIntegerType, NumberUnsignedType, NumberFloatType,                \
     AllocatorType, JSONSerializer>
 
-// #include <nlohmann/detail/meta/cpp_future.hpp>
+// #include <thor/detail/meta/cpp_future.hpp>
 
 
 #include <ciso646> // not
 #include <cstddef> // size_t
 #include <type_traits> // conditional, enable_if, false_type, integral_constant, is_constructible, is_integral, is_same, remove_cv, remove_reference, true_type
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -312,9 +279,9 @@ struct static_const
 template<typename T>
 constexpr T static_const<T>::value;
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/meta/type_traits.hpp>
+// #include <thor/detail/meta/type_traits.hpp>
 
 
 #include <ciso646> // not
@@ -322,17 +289,17 @@ constexpr T static_const<T>::value;
 #include <type_traits> // false_type, is_constructible, is_integral, is_same, true_type
 #include <utility> // declval
 
-// #include <nlohmann/json_fwd.hpp>
+// #include <thor/json_fwd.hpp>
 
-// #include <nlohmann/detail/iterators/iterator_traits.hpp>
+// #include <thor/detail/iterators/iterator_traits.hpp>
 
 
 #include <iterator> // random_access_iterator_tag
 
-// #include <nlohmann/detail/meta/void_t.hpp>
+// #include <thor/detail/meta/void_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -342,12 +309,12 @@ template <typename ...Ts> struct make_void
 };
 template <typename ...Ts> using void_t = typename make_void<Ts...>::type;
 } // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/meta/cpp_future.hpp>
+// #include <thor/detail/meta/cpp_future.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -368,7 +335,7 @@ struct iterator_types <
 };
 
 // This is required as some compilers implement std::iterator_traits in a way that
-// doesn't work with SFINAE. See https://github.com/nlohmann/json/issues/1341.
+// doesn't work with SFINAE. See https://github.com/thor/json/issues/1341.
 template <typename T, typename = void>
 struct iterator_traits
 {
@@ -392,18 +359,18 @@ struct iterator_traits<T*, enable_if_t<std::is_object<T>::value>>
 }
 }
 
-// #include <nlohmann/detail/meta/cpp_future.hpp>
+// #include <thor/detail/meta/cpp_future.hpp>
 
-// #include <nlohmann/detail/meta/detected.hpp>
+// #include <thor/detail/meta/detected.hpp>
 
 
 #include <type_traits>
 
-// #include <nlohmann/detail/meta/void_t.hpp>
+// #include <thor/detail/meta/void_t.hpp>
 
 
 // http://en.cppreference.com/w/cpp/experimental/is_detected
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -451,12 +418,12 @@ template <class To, template <class...> class Op, class... Args>
 using is_detected_convertible =
     std::is_convertible<detected_t<Op, Args...>, To>;
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 /*!
 @brief detail namespace with internal helper functions
@@ -483,8 +450,8 @@ namespace detail
 
 template<typename> struct is_basic_json : std::false_type {};
 
-NLOHMANN_BASIC_JSON_TPL_DECLARATION
-struct is_basic_json<NLOHMANN_BASIC_JSON_TPL> : std::true_type {};
+thor_BASIC_JSON_TPL_DECLARATION
+struct is_basic_json<thor_BASIC_JSON_TPL> : std::true_type {};
 
 //////////////////////////
 // aliases for detected //
@@ -790,21 +757,21 @@ template <typename BasicJsonType, typename CompatibleType>
 struct is_compatible_type
     : is_compatible_type_impl<BasicJsonType, CompatibleType> {};
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
 
 #include <exception> // exception
 #include <stdexcept> // runtime_error
 #include <string> // to_string
 
-// #include <nlohmann/detail/input/position_t.hpp>
+// #include <thor/detail/input/position_t.hpp>
 
 
 #include <cstddef> // size_t
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -829,7 +796,7 @@ struct position_t
 }
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -1169,9 +1136,9 @@ class other_error : public exception
     other_error(int id_, const char* what_arg) : exception(id_, what_arg) {}
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
 
 #include <array> // array
@@ -1179,7 +1146,7 @@ class other_error : public exception
 #include <cstddef> // size_t
 #include <cstdint> // uint8_t
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -1247,9 +1214,9 @@ inline bool operator<(const value_t lhs, const value_t rhs) noexcept
     return l_index < order.size() and r_index < order.size() and order[l_index] < order[r_index];
 }
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/conversions/from_json.hpp>
+// #include <thor/detail/conversions/from_json.hpp>
 
 
 #include <algorithm> // transform
@@ -1265,18 +1232,18 @@ inline bool operator<(const value_t lhs, const value_t rhs) noexcept
 #include <utility> // pair, declval
 #include <valarray> // valarray
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
-// #include <nlohmann/detail/meta/cpp_future.hpp>
+// #include <thor/detail/meta/cpp_future.hpp>
 
-// #include <nlohmann/detail/meta/type_traits.hpp>
+// #include <thor/detail/meta/type_traits.hpp>
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -1624,9 +1591,9 @@ namespace
 {
 constexpr const auto& from_json = detail::static_const<detail::from_json_fn>::value;
 } // namespace
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/conversions/to_json.hpp>
+// #include <thor/detail/conversions/to_json.hpp>
 
 
 #include <ciso646> // or, and, not
@@ -1637,13 +1604,13 @@ constexpr const auto& from_json = detail::static_const<detail::from_json_fn>::va
 #include <valarray> // valarray
 #include <vector> // vector
 
-// #include <nlohmann/detail/meta/cpp_future.hpp>
+// #include <thor/detail/meta/cpp_future.hpp>
 
-// #include <nlohmann/detail/meta/type_traits.hpp>
+// #include <thor/detail/meta/type_traits.hpp>
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
-// #include <nlohmann/detail/iterators/iteration_proxy.hpp>
+// #include <thor/detail/iterators/iteration_proxy.hpp>
 
 
 #include <cstddef> // size_t
@@ -1651,12 +1618,12 @@ constexpr const auto& from_json = detail::static_const<detail::from_json_fn>::va
 #include <iterator> // input_iterator_tag
 #include <tuple> // tuple_size, get, tuple_element
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
-// #include <nlohmann/detail/meta/type_traits.hpp>
+// #include <thor/detail/meta/type_traits.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -1772,44 +1739,44 @@ template<typename IteratorType> class iteration_proxy
 };
 // Structured Bindings Support
 // For further reference see https://blog.tartanllama.xyz/structured-bindings/
-// And see https://github.com/nlohmann/json/pull/1391
+// And see https://github.com/thor/json/pull/1391
 template <std::size_t N, typename IteratorType, enable_if_t<N == 0, int> = 0>
-auto get(const nlohmann::detail::iteration_proxy_value<IteratorType>& i) -> decltype(i.key())
+auto get(const thor::detail::iteration_proxy_value<IteratorType>& i) -> decltype(i.key())
 {
     return i.key();
 }
 // Structured Bindings Support
 // For further reference see https://blog.tartanllama.xyz/structured-bindings/
-// And see https://github.com/nlohmann/json/pull/1391
+// And see https://github.com/thor/json/pull/1391
 template <std::size_t N, typename IteratorType, enable_if_t<N == 1, int> = 0>
-auto get(const nlohmann::detail::iteration_proxy_value<IteratorType>& i) -> decltype(i.value())
+auto get(const thor::detail::iteration_proxy_value<IteratorType>& i) -> decltype(i.value())
 {
     return i.value();
 }
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
 // The Addition to the STD Namespace is required to add
 // Structured Bindings Support to the iteration_proxy_value class
 // For further reference see https://blog.tartanllama.xyz/structured-bindings/
-// And see https://github.com/nlohmann/json/pull/1391
+// And see https://github.com/thor/json/pull/1391
 namespace std
 {
 template <typename IteratorType>
-class tuple_size<::nlohmann::detail::iteration_proxy_value<IteratorType>>
+class tuple_size<::thor::detail::iteration_proxy_value<IteratorType>>
             : public std::integral_constant<std::size_t, 2> {};
 
 template <std::size_t N, typename IteratorType>
-class tuple_element<N, ::nlohmann::detail::iteration_proxy_value<IteratorType >>
+class tuple_element<N, ::thor::detail::iteration_proxy_value<IteratorType >>
 {
   public:
     using type = decltype(
                      get<N>(std::declval <
-                            ::nlohmann::detail::iteration_proxy_value<IteratorType >> ()));
+                            ::thor::detail::iteration_proxy_value<IteratorType >> ()));
 };
 }
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -2099,7 +2066,7 @@ void to_json(BasicJsonType& j, const std::pair<Args...>& p)
     j = { p.first, p.second };
 }
 
-// for https://github.com/nlohmann/json/pull/1134
+// for https://github.com/thor/json/pull/1134
 template < typename BasicJsonType, typename T,
            enable_if_t<std::is_same<T, iteration_proxy_value<typename BasicJsonType::iterator>>::value, int> = 0>
 void to_json(BasicJsonType& j, const T& b)
@@ -2135,9 +2102,9 @@ namespace
 {
 constexpr const auto& to_json = detail::static_const<detail::to_json_fn>::value;
 } // namespace
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/input/input_adapters.hpp>
+// #include <thor/detail/input/input_adapters.hpp>
 
 
 #include <cassert> // assert
@@ -2152,10 +2119,10 @@ constexpr const auto& to_json = detail::static_const<detail::to_json_fn>::value;
 #include <utility> // pair, declval
 #include <cstdio> //FILE *
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -2559,9 +2526,9 @@ class input_adapter
     input_adapter_t ia = nullptr;
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/input/lexer.hpp>
+// #include <thor/detail/input/lexer.hpp>
 
 
 #include <clocale> // localeconv
@@ -2572,14 +2539,14 @@ class input_adapter
 #include <string> // char_traits, string
 #include <vector> // vector
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
-// #include <nlohmann/detail/input/input_adapters.hpp>
+// #include <thor/detail/input/input_adapters.hpp>
 
-// #include <nlohmann/detail/input/position_t.hpp>
+// #include <thor/detail/input/position_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -4070,9 +4037,9 @@ scan_number_done:
     const char decimal_point_char = '.';
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/input/parser.hpp>
+// #include <thor/detail/input/parser.hpp>
 
 
 #include <cassert> // assert
@@ -4082,22 +4049,22 @@ scan_number_done:
 #include <string> // string
 #include <utility> // move
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
-// #include <nlohmann/detail/meta/is_sax.hpp>
+// #include <thor/detail/meta/is_sax.hpp>
 
 
 #include <cstdint> // size_t
 #include <utility> // declval
 
-// #include <nlohmann/detail/meta/detected.hpp>
+// #include <thor/detail/meta/detected.hpp>
 
-// #include <nlohmann/detail/meta/type_traits.hpp>
+// #include <thor/detail/meta/type_traits.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -4229,29 +4196,29 @@ struct is_sax_static_asserts
         "std::string&, const exception&)");
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/input/input_adapters.hpp>
+// #include <thor/detail/input/input_adapters.hpp>
 
-// #include <nlohmann/detail/input/json_sax.hpp>
+// #include <thor/detail/input/json_sax.hpp>
 
 
 #include <cstddef>
 #include <string>
 #include <vector>
 
-// #include <nlohmann/detail/input/parser.hpp>
+// #include <thor/detail/input/parser.hpp>
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 
 /*!
 @brief SAX interface
 
-This class describes the SAX interface used by @ref nlohmann::json::sax_parse.
+This class describes the SAX interface used by @ref thor::json::sax_parse.
 Each function is called in different situations while the input is parsed. The
 boolean return value informs the parser whether to continue processing the
 input.
@@ -4813,7 +4780,7 @@ class json_sax_dom_callback_parser
         }
 
         // skip this value if we already decided to skip the parent
-        // (https://github.com/nlohmann/json/issues/971#issuecomment-413678360)
+        // (https://github.com/thor/json/issues/971#issuecomment-413678360)
         if (not ref_stack.back())
         {
             return {false, nullptr};
@@ -4936,14 +4903,14 @@ class json_sax_acceptor
 };
 }  // namespace detail
 
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/input/lexer.hpp>
+// #include <thor/detail/input/lexer.hpp>
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -5429,15 +5396,15 @@ class parser
     const bool allow_exceptions = true;
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/iterators/primitive_iterator.hpp>
+// #include <thor/detail/iterators/primitive_iterator.hpp>
 
 
 #include <cstddef> // ptrdiff_t
 #include <limits>  // numeric_limits
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -5551,15 +5518,15 @@ class primitive_iterator_t
     }
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/iterators/internal_iterator.hpp>
-
-
-// #include <nlohmann/detail/iterators/primitive_iterator.hpp>
+// #include <thor/detail/iterators/internal_iterator.hpp>
 
 
-namespace nlohmann
+// #include <thor/detail/iterators/primitive_iterator.hpp>
+
+
+namespace thor
 {
 namespace detail
 {
@@ -5567,7 +5534,7 @@ namespace detail
 @brief an iterator value
 
 @note This structure could easily be a union, but MSVC currently does not allow
-unions members with complex constructors, see https://github.com/nlohmann/json/pull/105.
+unions members with complex constructors, see https://github.com/thor/json/pull/105.
 */
 template<typename BasicJsonType> struct internal_iterator
 {
@@ -5579,29 +5546,29 @@ template<typename BasicJsonType> struct internal_iterator
     primitive_iterator_t primitive_iterator {};
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/iterators/iter_impl.hpp>
+// #include <thor/detail/iterators/iter_impl.hpp>
 
 
 #include <ciso646> // not
 #include <iterator> // iterator, random_access_iterator_tag, bidirectional_iterator_tag, advance, next
 #include <type_traits> // conditional, is_const, remove_const
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
-// #include <nlohmann/detail/iterators/internal_iterator.hpp>
+// #include <thor/detail/iterators/internal_iterator.hpp>
 
-// #include <nlohmann/detail/iterators/primitive_iterator.hpp>
+// #include <thor/detail/iterators/primitive_iterator.hpp>
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
-// #include <nlohmann/detail/meta/cpp_future.hpp>
+// #include <thor/detail/meta/cpp_future.hpp>
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -5623,7 +5590,7 @@ This class implements a both iterators (iterator and const_iterator) for the
   The iterator that can be moved can be moved in both directions (i.e.
   incremented and decremented).
 @since version 1.0.0, simplified in version 2.0.9, change to bidirectional
-       iterators in version 3.0.0 (see https://github.com/nlohmann/json/issues/593)
+       iterators in version 3.0.0 (see https://github.com/thor/json/issues/593)
 */
 template<typename BasicJsonType>
 class iter_impl
@@ -6199,17 +6166,17 @@ class iter_impl
     internal_iterator<typename std::remove_const<BasicJsonType>::type> m_it;
 };
 }  // namespace detail
-} // namespace nlohmann
-// #include <nlohmann/detail/iterators/iteration_proxy.hpp>
+} // namespace thor
+// #include <thor/detail/iterators/iteration_proxy.hpp>
 
-// #include <nlohmann/detail/iterators/json_reverse_iterator.hpp>
+// #include <thor/detail/iterators/json_reverse_iterator.hpp>
 
 
 #include <cstddef> // ptrdiff_t
 #include <iterator> // reverse_iterator
 #include <utility> // declval
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -6321,9 +6288,9 @@ class json_reverse_iterator : public std::reverse_iterator<Base>
     }
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/output/output_adapters.hpp>
+// #include <thor/detail/output/output_adapters.hpp>
 
 
 #include <algorithm> // copy
@@ -6335,7 +6302,7 @@ class json_reverse_iterator : public std::reverse_iterator<Base>
 #include <string> // basic_string
 #include <vector> // vector
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -6442,9 +6409,9 @@ class output_adapter
     output_adapter_t<CharType> oa = nullptr;
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/input/binary_reader.hpp>
+// #include <thor/detail/input/binary_reader.hpp>
 
 
 #include <algorithm> // generate_n
@@ -6460,20 +6427,20 @@ class output_adapter
 #include <string> // char_traits, string
 #include <utility> // make_pair, move
 
-// #include <nlohmann/detail/input/input_adapters.hpp>
+// #include <thor/detail/input/input_adapters.hpp>
 
-// #include <nlohmann/detail/input/json_sax.hpp>
+// #include <thor/detail/input/json_sax.hpp>
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
-// #include <nlohmann/detail/meta/is_sax.hpp>
+// #include <thor/detail/meta/is_sax.hpp>
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -8434,9 +8401,9 @@ class binary_reader
     json_sax_t* sax = nullptr;
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/output/binary_writer.hpp>
+// #include <thor/detail/output/binary_writer.hpp>
 
 
 #include <algorithm> // reverse
@@ -8445,12 +8412,12 @@ class binary_reader
 #include <cstring> // memcpy
 #include <limits> // numeric_limits
 
-// #include <nlohmann/detail/input/binary_reader.hpp>
+// #include <thor/detail/input/binary_reader.hpp>
 
-// #include <nlohmann/detail/output/output_adapters.hpp>
+// #include <thor/detail/output/output_adapters.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -9732,7 +9699,7 @@ class binary_writer
     // The following to_char_type functions are implement the conversion
     // between uint8_t and CharType. In case CharType is not unsigned,
     // such a conversion is required to allow values greater than 128.
-    // See <https://github.com/nlohmann/json/issues/1286> for a discussion.
+    // See <https://github.com/thor/json/issues/1286> for a discussion.
     template < typename C = CharType,
                enable_if_t < std::is_signed<C>::value and std::is_signed<char>::value > * = nullptr >
     static constexpr CharType to_char_type(std::uint8_t x) noexcept
@@ -9777,9 +9744,9 @@ class binary_writer
     output_adapter_t<CharType> oa = nullptr;
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/output/serializer.hpp>
+// #include <thor/detail/output/serializer.hpp>
 
 
 #include <algorithm> // reverse, remove, fill, find, none_of
@@ -9795,9 +9762,9 @@ class binary_writer
 #include <string> // string
 #include <type_traits> // is_same
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
-// #include <nlohmann/detail/conversions/to_chars.hpp>
+// #include <thor/detail/conversions/to_chars.hpp>
 
 
 #include <cassert> // assert
@@ -9806,7 +9773,7 @@ class binary_writer
 #include <cstdint> // intN_t, uintN_t
 #include <cstring> // memcpy, memmove
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -10891,20 +10858,20 @@ char* to_chars(char* first, const char* last, FloatType value)
 }
 
 } // namespace detail
-} // namespace nlohmann
+} // namespace thor
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
-// #include <nlohmann/detail/meta/cpp_future.hpp>
+// #include <thor/detail/meta/cpp_future.hpp>
 
-// #include <nlohmann/detail/output/binary_writer.hpp>
+// #include <thor/detail/output/binary_writer.hpp>
 
-// #include <nlohmann/detail/output/output_adapters.hpp>
+// #include <thor/detail/output/output_adapters.hpp>
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -11488,7 +11455,7 @@ class serializer
     void dump_float(number_float_t x, std::true_type /*is_ieee_single_or_double*/)
     {
         char* begin = number_buffer.data();
-        char* end = ::nlohmann::detail::to_chars(begin, begin + number_buffer.size(), x);
+        char* end = ::thor::detail::to_chars(begin, begin + number_buffer.size(), x);
 
         o->write_characters(begin, static_cast<size_t>(end - begin));
     }
@@ -11621,18 +11588,18 @@ class serializer
     const error_handler_t error_handler;
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/json_ref.hpp>
+// #include <thor/detail/json_ref.hpp>
 
 
 #include <initializer_list>
 #include <utility>
 
-// #include <nlohmann/detail/meta/type_traits.hpp>
+// #include <thor/detail/meta/type_traits.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 namespace detail
 {
@@ -11693,9 +11660,9 @@ class json_ref
     const bool is_rvalue;
 };
 }  // namespace detail
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/detail/json_pointer.hpp>
+// #include <thor/detail/json_pointer.hpp>
 
 
 #include <cassert> // assert
@@ -11703,20 +11670,20 @@ class json_ref
 #include <string> // string
 #include <vector> // vector
 
-// #include <nlohmann/detail/macro_scope.hpp>
+// #include <thor/detail/macro_scope.hpp>
 
-// #include <nlohmann/detail/exceptions.hpp>
+// #include <thor/detail/exceptions.hpp>
 
-// #include <nlohmann/detail/value_t.hpp>
+// #include <thor/detail/value_t.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 template<typename BasicJsonType>
 class json_pointer
 {
     // allow basic_json to access private members
-    NLOHMANN_BASIC_JSON_TPL_DECLARATION
+    thor_BASIC_JSON_TPL_DECLARATION
     friend class basic_json;
 
   public:
@@ -12394,19 +12361,19 @@ class json_pointer
     /// the reference tokens
     std::vector<std::string> reference_tokens;
 };
-}  // namespace nlohmann
+}  // namespace thor
 
-// #include <nlohmann/adl_serializer.hpp>
+// #include <thor/adl_serializer.hpp>
 
 
 #include <utility>
 
-// #include <nlohmann/detail/conversions/from_json.hpp>
+// #include <thor/detail/conversions/from_json.hpp>
 
-// #include <nlohmann/detail/conversions/to_json.hpp>
+// #include <thor/detail/conversions/to_json.hpp>
 
 
-namespace nlohmann
+namespace thor
 {
 
 template<typename, typename>
@@ -12423,10 +12390,10 @@ struct adl_serializer
     */
     template<typename BasicJsonType, typename ValueType>
     static auto from_json(BasicJsonType&& j, ValueType& val) noexcept(
-        noexcept(::nlohmann::from_json(std::forward<BasicJsonType>(j), val)))
-    -> decltype(::nlohmann::from_json(std::forward<BasicJsonType>(j), val), void())
+        noexcept(::thor::from_json(std::forward<BasicJsonType>(j), val)))
+    -> decltype(::thor::from_json(std::forward<BasicJsonType>(j), val), void())
     {
-        ::nlohmann::from_json(std::forward<BasicJsonType>(j), val);
+        ::thor::from_json(std::forward<BasicJsonType>(j), val);
     }
 
     /*!
@@ -12440,22 +12407,22 @@ struct adl_serializer
     */
     template <typename BasicJsonType, typename ValueType>
     static auto to_json(BasicJsonType& j, ValueType&& val) noexcept(
-        noexcept(::nlohmann::to_json(j, std::forward<ValueType>(val))))
-    -> decltype(::nlohmann::to_json(j, std::forward<ValueType>(val)), void())
+        noexcept(::thor::to_json(j, std::forward<ValueType>(val))))
+    -> decltype(::thor::to_json(j, std::forward<ValueType>(val)), void())
     {
-        ::nlohmann::to_json(j, std::forward<ValueType>(val));
+        ::thor::to_json(j, std::forward<ValueType>(val));
     }
 };
 
-}  // namespace nlohmann
+}  // namespace thor
 
 
 /*!
 @brief namespace for Niels Lohmann
-@see https://github.com/nlohmann
+@see https://github.com/thor
 @since version 1.0.0
 */
-namespace nlohmann
+namespace thor
 {
 
 /*!
@@ -12539,53 +12506,53 @@ Format](http://rfc7159.net/rfc7159)
 
 @nosubgrouping
 */
-NLOHMANN_BASIC_JSON_TPL_DECLARATION
+thor_BASIC_JSON_TPL_DECLARATION
 class basic_json
 {
   private:
     template<detail::value_t> friend struct detail::external_constructor;
-    friend ::nlohmann::json_pointer<basic_json>;
-    friend ::nlohmann::detail::parser<basic_json>;
-    friend ::nlohmann::detail::serializer<basic_json>;
+    friend ::thor::json_pointer<basic_json>;
+    friend ::thor::detail::parser<basic_json>;
+    friend ::thor::detail::serializer<basic_json>;
     template<typename BasicJsonType>
-    friend class ::nlohmann::detail::iter_impl;
+    friend class ::thor::detail::iter_impl;
     template<typename BasicJsonType, typename CharType>
-    friend class ::nlohmann::detail::binary_writer;
+    friend class ::thor::detail::binary_writer;
     template<typename BasicJsonType, typename SAX>
-    friend class ::nlohmann::detail::binary_reader;
+    friend class ::thor::detail::binary_reader;
     template<typename BasicJsonType>
-    friend class ::nlohmann::detail::json_sax_dom_parser;
+    friend class ::thor::detail::json_sax_dom_parser;
     template<typename BasicJsonType>
-    friend class ::nlohmann::detail::json_sax_dom_callback_parser;
+    friend class ::thor::detail::json_sax_dom_callback_parser;
 
     /// workaround type for MSVC
-    using basic_json_t = NLOHMANN_BASIC_JSON_TPL;
+    using basic_json_t = thor_BASIC_JSON_TPL;
 
     // convenience aliases for types residing in namespace detail;
-    using lexer = ::nlohmann::detail::lexer<basic_json>;
-    using parser = ::nlohmann::detail::parser<basic_json>;
+    using lexer = ::thor::detail::lexer<basic_json>;
+    using parser = ::thor::detail::parser<basic_json>;
 
-    using primitive_iterator_t = ::nlohmann::detail::primitive_iterator_t;
+    using primitive_iterator_t = ::thor::detail::primitive_iterator_t;
     template<typename BasicJsonType>
-    using internal_iterator = ::nlohmann::detail::internal_iterator<BasicJsonType>;
+    using internal_iterator = ::thor::detail::internal_iterator<BasicJsonType>;
     template<typename BasicJsonType>
-    using iter_impl = ::nlohmann::detail::iter_impl<BasicJsonType>;
+    using iter_impl = ::thor::detail::iter_impl<BasicJsonType>;
     template<typename Iterator>
-    using iteration_proxy = ::nlohmann::detail::iteration_proxy<Iterator>;
-    template<typename Base> using json_reverse_iterator = ::nlohmann::detail::json_reverse_iterator<Base>;
+    using iteration_proxy = ::thor::detail::iteration_proxy<Iterator>;
+    template<typename Base> using json_reverse_iterator = ::thor::detail::json_reverse_iterator<Base>;
 
     template<typename CharType>
-    using output_adapter_t = ::nlohmann::detail::output_adapter_t<CharType>;
+    using output_adapter_t = ::thor::detail::output_adapter_t<CharType>;
 
-    using binary_reader = ::nlohmann::detail::binary_reader<basic_json>;
-    template<typename CharType> using binary_writer = ::nlohmann::detail::binary_writer<basic_json, CharType>;
+    using binary_reader = ::thor::detail::binary_reader<basic_json>;
+    template<typename CharType> using binary_writer = ::thor::detail::binary_writer<basic_json, CharType>;
 
-    using serializer = ::nlohmann::detail::serializer<basic_json>;
+    using serializer = ::thor::detail::serializer<basic_json>;
 
   public:
     using value_t = detail::value_t;
-    /// JSON Pointer, see @ref nlohmann::json_pointer
-    using json_pointer = ::nlohmann::json_pointer<basic_json>;
+    /// JSON Pointer, see @ref thor::json_pointer
+    using json_pointer = ::thor::json_pointer<basic_json>;
     template<typename T, typename SFINAE>
     using json_serializer = JSONSerializer<T, SFINAE>;
     /// how to treat decoding errors
@@ -12594,7 +12561,7 @@ class basic_json
     using initializer_list_t = std::initializer_list<detail::json_ref<basic_json>>;
 
     using input_format_t = detail::input_format_t;
-    /// SAX interface type, see @ref nlohmann::json_sax
+    /// SAX interface type, see @ref thor::json_sax
     using json_sax_t = json_sax<basic_json>;
 
     ////////////////
@@ -12703,14 +12670,14 @@ class basic_json
 
         result["copyright"] = "(C) 2013-2017 Niels Lohmann";
         result["name"] = "JSON for Modern C++";
-        result["url"] = "https://github.com/nlohmann/json";
+        result["url"] = "https://github.com/thor/json";
         result["version"]["string"] =
-            std::to_string(NLOHMANN_JSON_VERSION_MAJOR) + "." +
-            std::to_string(NLOHMANN_JSON_VERSION_MINOR) + "." +
-            std::to_string(NLOHMANN_JSON_VERSION_PATCH);
-        result["version"]["major"] = NLOHMANN_JSON_VERSION_MAJOR;
-        result["version"]["minor"] = NLOHMANN_JSON_VERSION_MINOR;
-        result["version"]["patch"] = NLOHMANN_JSON_VERSION_PATCH;
+            std::to_string(thor_JSON_VERSION_MAJOR) + "." +
+            std::to_string(thor_JSON_VERSION_MINOR) + "." +
+            std::to_string(thor_JSON_VERSION_PATCH);
+        result["version"]["major"] = thor_JSON_VERSION_MAJOR;
+        result["version"]["minor"] = thor_JSON_VERSION_MINOR;
+        result["version"]["patch"] = thor_JSON_VERSION_PATCH;
 
 #ifdef _WIN32
         result["platform"] = "win32";
@@ -17236,7 +17203,7 @@ class basic_json
     @note This function is required to resolve an ambiguous overload error,
           because pairs like `{"key", "value"}` can be both interpreted as
           `object_t::value_type` or `std::initializer_list<basic_json>`, see
-          https://github.com/nlohmann/json/issues/235 for more information.
+          https://github.com/thor/json/issues/235 for more information.
 
     @liveexample{The example shows how initializer lists are treated as
     objects when possible.,push_back__initializer_list}
@@ -17363,7 +17330,7 @@ class basic_json
 
     /// Helper for insertion of an iterator
     /// @note: This uses std::distance to support GCC 4.8,
-    ///        see https://github.com/nlohmann/json/pull/1257
+    ///        see https://github.com/thor/json/pull/1257
     template<typename... Args>
     iterator insert_iterator(const_iterator pos, Args&& ... args)
     {
@@ -20282,7 +20249,7 @@ class basic_json
 
     /// @}
 };
-} // namespace nlohmann
+} // namespace thor
 
 ///////////////////////
 // nonmember support //
@@ -20294,35 +20261,35 @@ namespace std
 
 /// hash value for JSON objects
 template<>
-struct hash<nlohmann::json>
+struct hash<thor::json>
 {
     /*!
     @brief return a hash value for a JSON object
 
     @since version 1.0.0
     */
-    std::size_t operator()(const nlohmann::json& j) const
+    std::size_t operator()(const thor::json& j) const
     {
         // a naive hashing via the string representation
-        const auto& h = hash<nlohmann::json::string_t>();
+        const auto& h = hash<thor::json::string_t>();
         return h(j.dump());
     }
 };
 
 /// specialization for std::less<value_t>
 /// @note: do not remove the space after '<',
-///        see https://github.com/nlohmann/json/pull/679
+///        see https://github.com/thor/json/pull/679
 template<>
-struct less< ::nlohmann::detail::value_t>
+struct less< ::thor::detail::value_t>
 {
     /*!
     @brief compare two value_t enum values
     @since version 3.0.0
     */
-    bool operator()(nlohmann::detail::value_t lhs,
-                    nlohmann::detail::value_t rhs) const noexcept
+    bool operator()(thor::detail::value_t lhs,
+                    thor::detail::value_t rhs) const noexcept
     {
-        return nlohmann::detail::operator<(lhs, rhs);
+        return thor::detail::operator<(lhs, rhs);
     }
 };
 
@@ -20332,9 +20299,9 @@ struct less< ::nlohmann::detail::value_t>
 @since version 1.0.0
 */
 template<>
-inline void swap<nlohmann::json>(nlohmann::json& j1, nlohmann::json& j2) noexcept(
-    is_nothrow_move_constructible<nlohmann::json>::value and
-    is_nothrow_move_assignable<nlohmann::json>::value
+inline void swap<thor::json>(thor::json& j1, thor::json& j2) noexcept(
+    is_nothrow_move_constructible<thor::json>::value and
+    is_nothrow_move_assignable<thor::json>::value
 )
 {
     j1.swap(j2);
@@ -20355,9 +20322,9 @@ if no parse error occurred.
 
 @since version 1.0.0
 */
-inline nlohmann::json operator "" _json(const char* s, std::size_t n)
+inline thor::json operator "" _json(const char* s, std::size_t n)
 {
-    return nlohmann::json::parse(s, s + n);
+    return thor::json::parse(s, s + n);
 }
 
 /*!
@@ -20373,12 +20340,12 @@ object if no parse error occurred.
 
 @since version 2.0.0
 */
-inline nlohmann::json::json_pointer operator "" _json_pointer(const char* s, std::size_t n)
+inline thor::json::json_pointer operator "" _json_pointer(const char* s, std::size_t n)
 {
-    return nlohmann::json::json_pointer(std::string(s, n));
+    return thor::json::json_pointer(std::string(s, n));
 }
 
-// #include <nlohmann/detail/macro_unscope.hpp>
+// #include <thor/detail/macro_unscope.hpp>
 
 
 // restore GCC/clang diagnostic settings
@@ -20399,8 +20366,8 @@ inline nlohmann::json::json_pointer operator "" _json_pointer(const char* s, std
 #undef JSON_DEPRECATED
 #undef JSON_HAS_CPP_14
 #undef JSON_HAS_CPP_17
-#undef NLOHMANN_BASIC_JSON_TPL_DECLARATION
-#undef NLOHMANN_BASIC_JSON_TPL
+#undef thor_BASIC_JSON_TPL_DECLARATION
+#undef thor_BASIC_JSON_TPL
 
 
 #endif

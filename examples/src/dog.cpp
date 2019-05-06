@@ -4,6 +4,8 @@
 
 
 #include "../include/dog.h"
+#include "thor/os.h"
+
 
 Dog::Dog(string name) {
     thor::Log(kInfo, "Building your dog...");
