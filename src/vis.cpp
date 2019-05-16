@@ -4,15 +4,23 @@
 
 #include "include/vis.h"
 
-cv::Scalar thor::vis::gen_unique_color_cv(int idx, double hue_step, float alpha) {
-  RGBA cr = gen_unique_color(idx, hue_step, alpha);
+cv::Scalar thor::vis::gen_unique_color_cv(int idx, bool is_track, double hue_step, float alpha) {
+  RGBA cr = gen_unique_color(idx, is_track, hue_step, alpha);
   cv::Scalar c(cr.r, cr.g, cr.b, cr.a);
   return c;
 }
 
-thor::vis::RGBA thor::vis::gen_unique_color(int idx, double hue_step,
+thor::vis::RGBA thor::vis::gen_unique_color(int idx, bool is_track, double hue_step,
                                             float alpha) {
+
+  // if idx is track id, the color should be 
+  if (is_track) {
+    // we may have 1000+ track ids
+    hue_step = 1./9.;
+    idx = idx%9;
+  }
   auto h = int(idx * (360 * hue_step));
+  // 1/5 values we will not use
   double v = 1.0 - ((idx * 1.0) * hue_step) / 5.;
   float s = 1;
   float r, g, b;

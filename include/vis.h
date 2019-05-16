@@ -22,6 +22,7 @@
 #include <sstream>
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
+#include "cmath"
 
 using namespace cv;
 
@@ -37,9 +38,10 @@ struct RGBA {
 };
 
 // adding default values for better calling
-thor::vis::RGBA gen_unique_color(int idx, double hue_step = 0.0125,
+thor::vis::RGBA gen_unique_color(int idx, bool is_track=false, double hue_step = 0.0125,
                                  float alpha = 0.7);
-cv::Scalar gen_unique_color_cv(int idx, double hue_step = 0.0125,
+// tracking color is slightly different, they are all close
+cv::Scalar gen_unique_color_cv(int idx, bool is_track=false, double hue_step = 0.0125,
                                float alpha = 0.7);
 
 void hsv2rgb(float &r, float &g, float &b, int h, float s, double v);
