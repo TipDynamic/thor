@@ -10,19 +10,18 @@
  *  the module provide some utility methods to draw bboxes
  */
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 
-#include <cassert>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <cmath>
 #include <sys/stat.h>
+#include <cassert>
+#include <cmath>
+#include <fstream>
+#include <iostream>
 #include <map>
+#include <sstream>
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
-
 
 using namespace cv;
 
@@ -38,13 +37,16 @@ struct RGBA {
 };
 
 // adding default values for better calling
-thor::vis::RGBA gen_unique_color(int idx, double hue_step=0.0125, float alpha=0.7);
+thor::vis::RGBA gen_unique_color(int idx, double hue_step = 0.0125,
+                                 float alpha = 0.7);
+cv::Scalar gen_unique_color_cv(int idx, double hue_step = 0.0125,
+                               float alpha = 0.7);
 
 void hsv2rgb(float &r, float &g, float &b, int h, float s, double v);
 
 cv::Mat createAlpha(cv::Mat &src);
 int addAlpha(cv::Mat &src, cv::Mat &dst, cv::Mat &alpha);
-} // namespace vis
-} // namespace thor
+}  // namespace vis
+}  // namespace thor
 
-#endif //CAO_VIS_H
+#endif  // CAO_VIS_H
