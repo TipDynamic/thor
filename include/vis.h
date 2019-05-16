@@ -37,7 +37,8 @@ struct RGBA {
   int r, g, b, a;
 };
 
-thor::vis::RGBA gen_unique_color(int idx, double hue_step, float alpha);
+// adding default values for better calling
+thor::vis::RGBA gen_unique_color(int idx, double hue_step=0.0125, float alpha=0.7);
 
 void hsv2rgb(float &r, float &g, float &b, int h, float s, double v);
 
