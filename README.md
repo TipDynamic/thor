@@ -38,12 +38,16 @@ We will automatically locate your system installed Eigen, once found, you can us
 *updates*:
 
 - **2050.01.01**: to be continue..
+
+- **2019.05.19**:  There would be a huge updates on **thor** in recent days. We are trying to integrate all math library in Apollo into thor. So that it can do lots of math calculations.  If you got any undefined inference error just open an issue about that. Currently if you want using thor, you gonna need **link protobuf** in your c++ project.   
+
 - **2019.05.01**: Add some geometry utils such as conversion between quaternion and euler angels for robots and autocar:
     ```c++
     Eigen::Matrix3d Quaternion2RotationMatrix(const double x, const double y, const double z, const double w);
     Eigen::Quaterniond EulerAngle2Quaternion(const double yaw, const double pitch, const double roll);                             
     ```
     **note**: this is only available when you have Eigen installed.
+
 - **2019.01.15**: Now, slam module has been integrated into thor, you can access slam by those functions;
 
 
