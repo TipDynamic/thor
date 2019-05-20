@@ -16,8 +16,8 @@ thor::vis::RGBA thor::vis::gen_unique_color(int idx, bool is_track, double hue_s
   // if idx is track id, the color should be 
   if (is_track) {
     // we may have 1000+ track ids
-    hue_step = 1./9.;
-    idx = idx%9;
+    int track_size = 1./hue_step;
+    idx = idx%track_size;
   }
   auto h = int(idx * (360 * hue_step));
   // 1/5 values we will not use

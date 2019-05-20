@@ -11,9 +11,11 @@ file(GLOB_RECURSE SOURCES src/*.cpp lib/*.cpp )
 file(GLOB_RECURSE HEADERS include/*.h lib/*.h)
 find_package(OpenCV REQUIRED)
 
+find_package(Protobuf REQUIRED)
+
 
 set(BUILD_SHARED_LIBS OFF)
 add_executable(thor_example thor_demo.cpp ${SOURCES} ${HEADERS})
-target_link_libraries(thor_example -lthor ${OpenCV_LIBRARIES} glog)
+target_link_libraries(thor_example -lthor ${OpenCV_LIBRARIES} glog ${PROTOBUF_LIBRARY})
 
 
