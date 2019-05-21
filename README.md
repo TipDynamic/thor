@@ -1,27 +1,26 @@
 # thor [![Travis Status](https://travis-ci.org/davisking/dlib.svg?branch=master)](https://travis-ci.org/davisking/dlib)
 
-**thor** is a C++ helper library which contains many *system*, *string*, *deep learning visualize*, etc. Many helper modules allows you integrate into your project.
-
+**thor** is a C++ helper library which provide huge utilities, algorithms, and visualization functions for deep learning. We recommend install thor from github source since we update thor new APIs a lot. But *thor* will always compatible with older versions, it safe and reliable integrate into your projects and providing useful utilities.
 
 
 ## Install
 
 *thor* is now expanded into a deep learning util library, so there are som prerequirements is needed:
 
-```
+```shell
 sudo apt install libopencv-dev
 sudo apt install libfreetype6-dev
+sudo apt install libcurl4-openssl-dev
+
 
 PCL (optinal)
 Eigen (optional)
 ```
+
 In case you are not formiliar with any above libs, you can still build thor, but you need them when calling some apis.
 
 
-```
-# install some dependencies
-sudo apt install libcurl4-openssl-dev
-# make sure curl avaliable
+```shell
 git clone https://github.com/jinfagang/thor
 cd thor
 mkdir build
@@ -38,16 +37,13 @@ We will automatically locate your system installed Eigen, once found, you can us
 *updates*:
 
 - **2050.01.01**: to be continue..
-
 - **2019.05.19**:  There would be a huge updates on **thor** in recent days. We are trying to integrate all math library in Apollo into thor. So that it can do lots of math calculations.  If you got any undefined inference error just open an issue about that. Currently if you want using thor, you gonna need **link protobuf** in your c++ project.   
-
 - **2019.05.01**: Add some geometry utils such as conversion between quaternion and euler angels for robots and autocar:
     ```c++
     Eigen::Matrix3d Quaternion2RotationMatrix(const double x, const double y, const double z, const double w);
     Eigen::Quaterniond EulerAngle2Quaternion(const double yaw, const double pitch, const double roll);                             
     ```
     **note**: this is only available when you have Eigen installed.
-
 - **2019.01.15**: Now, slam module has been integrated into thor, you can access slam by those functions;
 
 
