@@ -12,13 +12,23 @@ sudo apt install libopencv-dev
 sudo apt install libfreetype6-dev
 sudo apt install libcurl4-openssl-dev
 
+# for PCL, if you already installed, skip this
+sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl
+sudo apt-get update
+sudo apt-get install libpcl-all
 
-PCL (optinal)
-Eigen (optional)
+# for protobuf 3.6.x (DONOT install 2.7.x, it's deprecated)
+sudo apt-get install libprotobuf-dev
+sudo apt install protobuf-compiler
+# make sure `protoc --version` is 3.6.x, 3.0+ also OK.
+
+# for Eigen
+sudo apt install libeigen3-dev
+# if you got Eigen/Eigen include issue, link eigen3/Eigen to Eigen
 ```
 
-In case you are not formiliar with any above libs, you can still build thor, but you need them when calling some apis.
-
+Since **thor** is target at *deep learning* purpose, those dependencies is must and enssential. If you are an newbie and got some trouble in install thor, feel free to open an issue about your problem. We will solve that as quickly as possiable.
+After dependencies installation, you can built thor now.
 
 ```shell
 git clone https://github.com/jinfagang/thor
